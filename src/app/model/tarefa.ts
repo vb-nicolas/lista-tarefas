@@ -16,5 +16,9 @@ export class Tarefa {
             default: return "";
         }
     }
+    expirada() {
+        return (new Date() > new Date(this.dataLimite));
+        }
+        
 
 }
