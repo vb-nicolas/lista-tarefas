@@ -23,6 +23,14 @@
     </div>
 
     <ng-template #thenBlock>
+
+      <ion-row class="cabeçalho">
+        <ion-col size=4><span>Descrição</span></ion-col>
+        <ion-col size=3><span>Prioridade</span></ion-col>
+        <ion-col size=3><span>Prazo Máximo</span></ion-col>
+        <ion-col size=2><span>Executada</span></ion-col>
+      </ion-row>
+
       <ion-grid *ngFor="let t of tarefas">
         <ion-row class.concluida="t.concluida" [class.bold]="t.prioridade == 2">
           <ion-col size=4><span>{{t.descricao}}</span></ion-col>
