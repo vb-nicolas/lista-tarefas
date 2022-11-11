@@ -32,10 +32,10 @@
       </ion-row>
 
       <ion-grid *ngFor="let t of tarefas">
-        <ion-row class.concluida="t.concluida" [class.bold]="t.prioridade == 2">
-          <ion-col size=4><span>{{t.descricao}}</span></ion-col>
-          <ion-col size=3><span>{{t.prioridadeStr()}}</span></ion-col>
-          <ion-col size=3><span>{{t.dataLimite}}</span></ion-col>
+        <ion-row [class.concluida]="t.concluida" [class.bold]="t.prioridade == 2">
+          <ion-col size=4><span [class.expirada]="t.expirada()">{{t.descricao}}</span></ion-col>
+          <ion-col size=3><span [class.expirada]="t.expirada()">{{t.prioridadeStr()}}</span></ion-col>
+          <ion-col size=3><span [class.expirada]="t.expirada()">{{t.dataLimite}}</span></ion-col>
           <ion-col size=2>
             <ion-icon (click)="toggleConcluida(t)" [name]="t.concluida ?
             'checkbox-outline' : 'square-outline'"></ion-icon>
