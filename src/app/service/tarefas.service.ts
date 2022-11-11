@@ -32,4 +32,8 @@ export class TarefasService {
     return this.tarefas;
   }
 
+  public addTarefa(tarefa : Tarefa) {
+    this.tarefas.push(tarefa);
+  }
+
 }
