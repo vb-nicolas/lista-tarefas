@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { FormsModule } from '@angular/forms';
+import { IonicStorageModule } from '@ionic/storage-angular';
 
 import { TarefasService } from './service/tarefas.service';
 
@@ -16,7 +17,8 @@ import { TarefasService } from './service/tarefas.service';
   imports: [BrowserModule, 
     IonicModule.forRoot(), 
     AppRoutingModule,
-    FormsModule],
+    FormsModule,
+    IonicStorageModule.forRoot()],
   providers: [
     TarefasService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

@@ -17,6 +17,9 @@
 
     <h4>Minhas Tarefas</h4>
     
+    <ion-button (click)="buscaTarefas()">Atualizar</ion-button>    
+    <br>
+
     <div *ngIf="tarefas.length > 0;
       then thenBlock
       else elseBlock">

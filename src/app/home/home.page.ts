@@ -18,7 +18,12 @@ export class HomePage {
   constructor(private tarefasService : TarefasService,
     private toastController : ToastController) {
 
-    this.tarefas = tarefasService.buscaTarefas();
+  }
+
+  buscaTarefas() {
+    this.tarefasService.buscaTarefas().then(t => {
+      this.tarefas = t;
+    })
   }
   
   async exibeMensagem() {
@@ -34,9 +39,10 @@ export class HomePage {
   }
 
   salva() {
-    this.tarefasService.addTarefa(this.tarefa);
-    this.tarefas = this.tarefasService.buscaTarefas();
-    this.exibeMensagem();
+    this.tarefasService.addTarefa(this.tarefa).then(() => {
+      this.buscaTarefas();
+      this.exibeMensagem();
+    });
   }
 
 }
