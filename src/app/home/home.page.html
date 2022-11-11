@@ -17,6 +17,9 @@
 
     <h4>Minhas Tarefas</h4>
     
+    <ion-button (click)="buscaTarefas()">Atualizar</ion-button>    
+    <br>
+
     <div *ngIf="tarefas.length > 0;
       then thenBlock
       else elseBlock">
@@ -45,5 +48,27 @@
     </ng-template>
 
     <ng-template #elseBlock>Nenhuma tarefa cadastrada.</ng-template>
+
+    <h4>Nova Tarefa</h4>
+
+    <form (ngSubmit)="salva()">
+      <ion-input type="text" 
+        placeholder="Descrição:" 
+        name="descricao"
+        [(ngModel)]="tarefa.descricao"></ion-input>
+
+      <ion-input type="number" 
+        placeholder="Prioridade:" 
+        name="prioridade"
+        [(ngModel)]="tarefa.prioridade"></ion-input>
+
+      <ion-input type="text" 
+        placeholder="Prazo máximo:" 
+        name="dataLimite"
+        [(ngModel)]="tarefa.dataLimite"></ion-input>
+
+      <ion-button type="submit">Salvar</ion-button>
+    </form>
+
   </div>
 </ion-content>

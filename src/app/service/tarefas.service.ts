@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Storage } from '@ionic/storage-angular';
+
 import { Tarefa } from '../model/tarefa';
 
 @Injectable({
@@ -6,30 +8,47 @@ import { Tarefa } from '../model/tarefa';
 })
 export class TarefasService {
 
-  private tarefas : Tarefa[] = [];
+  private _storage : Storage | null = null;
 
-  constructor() { 
-    this.tarefas.push(new Tarefa());
-    this.tarefas[0].id = 1;
-    this.tarefas[0].descricao = 'Instalar Node';
-    this.tarefas[0].prioridade = 0;
-    this.tarefas[0].dataLimite = '2022-11-30';
-    
-    this.tarefas.push(new Tarefa());
-    this.tarefas[1].id = 2;
-    this.tarefas[1].descricao = 'Configurar VS Code';
-    this.tarefas[1].prioridade = 1;
-    this.tarefas[1].dataLimite = '2022-11-03';
-    
-    this.tarefas.push(new Tarefa());
-    this.tarefas[2].id = 3;
-    this.tarefas[2].descricao = 'Corrigir a ordenação das tarefas';
-    this.tarefas[2].prioridade = 2;
-    this.tarefas[2].dataLimite = '2022-11-03';
+  constructor(private storage : Storage) { 
+    this.init();
   }
 
-  public buscaTarefas() : Tarefa[] {
-    return this.tarefas;
+  async init() {
+    const storage = await this.storage.create();
+    this._storage = storage;
+  }
+
+  public async buscaTarefas() : Promise<Tarefa[]> {
+    return this._storage?.get("listaTarefas").then(l => {
+      let lista : Tarefa[] = [];
+      if (l == null)
+        return lista;
+
+      for (let t of l) {
+        let tarefa : Tarefa = new Tarefa();
+        tarefa.descricao = t.descricao;
+        tarefa.concluida = t.concluida;
+        tarefa.dataLimite = t.dataLimite;
+        tarefa.id = t.id;
+        tarefa.prioridade = t.prioridade;
+
+        lista.push(tarefa);
+      }
+
+      return lista;
+    });
+  }
+
+  public async addTarefa(tarefa : Tarefa) {
+    return this._storage?.get("listaTarefas").then((l) => {
+      let tarefas = [];
+      if (l != null)
+        tarefas = l;
+
+      tarefas.push(tarefa);
+      return this._storage?.set("listaTarefas", tarefas);
+    });
   }
 
 }
