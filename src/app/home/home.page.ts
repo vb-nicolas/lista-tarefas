@@ -43,6 +43,8 @@ export class HomePage {
       this.buscaTarefas();
       this.exibeMensagem();
     });
+    
+      
   }
 
 }

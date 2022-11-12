@@ -57,10 +57,14 @@
         name="descricao"
         [(ngModel)]="tarefa.descricao"></ion-input>
 
-      <ion-input type="number" 
-        placeholder="Prioridade:" 
-        name="prioridade"
-        [(ngModel)]="tarefa.prioridade"></ion-input>
+        
+        <ion-select name="Prioridade"
+        [(ngModel)]="tarefa.prioridade" placeholder="Selecione
+        uma prioridade...">
+        <ion-select-option value="0">Baixa</ion-select-option>
+        <ion-select-option value="1">Média</ion-select-option>
+        <ion-select-option value="2">Alta</ion-select-option>
+        </ion-select>
 
       <ion-input type="text" 
         placeholder="Prazo máximo:" 
