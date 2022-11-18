@@ -17,7 +17,8 @@
 
     <h4>Minhas Tarefas</h4>
     
-    <ion-button (click)="buscaTarefas()">Atualizar</ion-button>    
+    <ion-button (click)="buscaTarefas()">Atualizar</ion-button>
+    <ion-button  (click)="abrirModal(true)">Nova Tarefa</ion-button>
     <br>
 
     <div *ngIf="tarefas.length > 0;
@@ -49,30 +50,46 @@
 
     <ng-template #elseBlock>Nenhuma tarefa cadastrada.</ng-template>
 
-    <h4>Nova Tarefa</h4>
+    <ion-modal [isOpen]="modalAberta">
+      <ng-template>
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>Nova Tarefa</ion-title>
+            <ion-buttons slot="end">
+              <ion-button (click)="abrirModal(false)">Fechar</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+          <form (ngSubmit)="salva()">
+            <ion-input type="text"
+                       placeholder="Descrição:"
+                       name="descricao"
+                       [(ngModel)]="tarefa.descricao">
 
-    <form (ngSubmit)="salva()">
-      <ion-input type="text" 
-        placeholder="Descrição:" 
-        name="descricao"
-        [(ngModel)]="tarefa.descricao"></ion-input>
+            </ion-input>
 
-        
-        <ion-select name="Prioridade"
-        [(ngModel)]="tarefa.prioridade" placeholder="Selecione
-        uma prioridade...">
-        <ion-select-option value="0">Baixa</ion-select-option>
-        <ion-select-option value="1">Média</ion-select-option>
-        <ion-select-option value="2">Alta</ion-select-option>
-        </ion-select>
+            <ion-input type="number"
+                       placeholder="Prioridade:"
+                       name="prioridade"
+                       [(ngModel)]="tarefa.prioridade">
 
-      <ion-input type="text" 
-        placeholder="Prazo máximo:" 
-        name="dataLimite"
-        [(ngModel)]="tarefa.dataLimite"></ion-input>
+            </ion-input>
 
-      <ion-button type="submit">Salvar</ion-button>
-    </form>
+            <ion-input type="text"
+                       placeholder="Prazo máximo:"
+                       name="dataLimite"
+                       [(ngModel)]="tarefa.dataLimite">
+
+            </ion-input>
+
+            <ion-button type="submit">Salvar</ion-button>
+          </form>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+
+
 
   </div>
 </ion-content>
