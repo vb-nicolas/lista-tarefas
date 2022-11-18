@@ -41,6 +41,11 @@ export class TarefasService {
   }
 
   public async addTarefa(tarefa : Tarefa) {
+    if (typeof(tarefa.prioridade) == "string") {
+      tarefa.prioridade =
+      parseInt(tarefa.prioridade);
+      }
+      
     return this._storage?.get("listaTarefas").then((l) => {
       let tarefas = [];
       if (l != null)

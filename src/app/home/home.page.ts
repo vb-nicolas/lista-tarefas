@@ -45,6 +45,8 @@ export class HomePage {
       this.buscaTarefas();
       this.exibeMensagem();
     });
+    
+      
   }
 
   abrirModal(isOpen: boolean) {
