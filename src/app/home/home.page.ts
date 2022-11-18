@@ -15,6 +15,8 @@ export class HomePage {
 
   private tarefa : Tarefa = new Tarefa();
 
+  private modalAberta = false;
+
   constructor(private tarefasService : TarefasService,
     private toastController : ToastController) {
 
@@ -43,6 +45,12 @@ export class HomePage {
       this.buscaTarefas();
       this.exibeMensagem();
     });
+    
+      
+  }
+
+  abrirModal(isOpen: boolean) {
+    this.modalAberta = isOpen;
   }
 
 }
