@@ -62,10 +62,12 @@
         name="prioridade"
         [(ngModel)]="tarefa.prioridade"></ion-input>
 
-      <ion-input type="text" 
-        placeholder="Prazo máximo:" 
+      <ion-datetime type="text" 
         name="dataLimite"
-        [(ngModel)]="tarefa.dataLimite"></ion-input>
+        DisplayFormat="AAAA-MM-DD"
+        [(ngModel)]="tarefa.dataLimite"
+        ></ion-datetime>
+
 
       <ion-button type="submit">Salvar</ion-button>
     </form>
